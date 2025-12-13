@@ -48,20 +48,21 @@ export default function UploadDiagnose() {
       </form>
 
       <div style={{ height: 12 }} />
-      {diagnosis && (
-        <div>
-          <h4>Results</h4>
-          {diagnosis.map((d, i) => (
-            <div key={i} style={{ marginBottom: 8 }}>
-              <strong>{d.issue}</strong>
-              <div>Confidence: {(d.probability*100).toFixed(0)}%</div>
-              <ul>
-                {d.advice.map((a, j) => <li key={j}>{a}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
+{diagnosis && (
+  <div className="fade-in">
+    <h4 style={{ color: "white" }}>Diagnosis Results</h4>
+    {diagnosis.map((d, i) => (
+      <div className="result-box" key={i}>
+        <strong>{d.issue}</strong>
+        <div>Confidence: {(d.probability * 100).toFixed(0)}%</div>
+        <ul>
+          {d.advice.map((a, j) => <li key={j}>{a}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
     </div>
   )
 }

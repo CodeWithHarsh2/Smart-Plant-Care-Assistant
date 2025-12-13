@@ -34,12 +34,13 @@ export default function PlantDatabase() {
 
       <div style={{ height: 12 }} />
       {plants.map(p => (
-        <div key={p.id} style={{ padding: 8, borderBottom: '1px solid #eee' }}>
-          <strong>{p.name}</strong>
-          <div>{p.species}</div>
-          <div>Water every {p.watering_interval_days} days</div>
-        </div>
-      ))}
+  <div className="plant-item fade-in" key={p.id}>
+    <strong>{p.name}</strong>
+    <div>{p.species}</div>
+    <div>Water every {p.watering_interval_days} days</div>
+  </div>
+))}
+
     </div>
   )
 }

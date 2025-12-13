@@ -1,23 +1,259 @@
-/* Base layout */
-html, body, #root { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: #f5fbf8 }
-.app-root { max-width: 1100px; margin: 20px auto; padding: 20px }
-.app-header { text-align: center; padding: 20px }
-.app-header h1 { margin: 0; font-size: 28px }
-.main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px }
-.left { background: white; padding: 16px; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.06) }
-.right { background: linear-gradient(180deg, #ffffff, #f2fff6); padding: 16px; border-radius: 12px }
-.app-footer { text-align: center; margin-top: 20px; color: #666 }
+/* ===============================
+   GLOBAL RESET & VARIABLES
+================================ */
 
-/* small components */
-.card { padding: 12px; border-radius: 10px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.04); margin-bottom: 12px }
-.button { padding: 10px 14px; border-radius: 8px; cursor: pointer; border: none; background: #2e8b57; color: white }
-.input { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #e4e4e4 }
+:root {
+  --primary: #1f7a4f;
+  --secondary: #145a3a;
+  --accent: #c9a227;
+  --bg-dark: #0f2f23;
+  --bg-light: #f4fff9;
+  --glass: rgba(255, 255, 255, 0.15);
+  --border-glass: rgba(255, 255, 255, 0.25);
+}
 
-/* small animation */
-.fade-in { animation: fadeIn 600ms ease-in-out }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
+* {
+  box-sizing: border-box;
+}
 
-/* responsive */
-@media (max-width: 900px) {
-  .main-grid { grid-template-columns: 1fr }
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  background: linear-gradient(135deg, #0b3d2e, #1f7a4f);
+  color: #102820;
+}
+
+/* ===============================
+   APP LAYOUT
+================================ */
+
+.app-root {
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.app-header {
+  background: linear-gradient(120deg, #1f7a4f, #2fa36b);
+  border-radius: 80px;
+  padding: 50px;
+  color: white;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+  background-image: url("./plant-bg.jpg");
+  background-size: cover;
+  background-blend-mode: overlay;
+
+}
+
+.app-header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 60%);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 36px;
+  letter-spacing: 0.5px;
+}
+
+.app-header p {
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+/* ===============================
+   MAIN GRID
+================================ */
+
+.main-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 24px;
+}
+
+/* ===============================
+   GLASS CARDS
+================================ */
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* ===============================
+   LEFT & RIGHT PANELS
+================================ */
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ===============================
+   FORMS
+================================ */
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 12px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.85);
+}
+
+.input:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* File input */
+input[type="file"] {
+  color: white;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.button {
+  background: linear-gradient(135deg, #c9a227, #f0d35c);
+  color: #2b2200;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px rgba(201,162,39,0.6);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   DIAGNOSIS RESULT
+================================ */
+
+.result-box {
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.result-box strong {
+  color: #145a3a;
+}
+
+/* ===============================
+   PLANT LIST
+================================ */
+
+.plant-item {
+  background: rgba(255,255,255,0.75);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   DASHBOARD
+================================ */
+
+.dashboard-stat {
+  background: linear-gradient(135deg, #1f7a4f, #2fa36b);
+  color: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+
+.app-footer {
+  text-align: center;
+  margin-top: 16px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+
+.fade-in {
+  animation: fadeInUp 0.8s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
 }
