@@ -10,6 +10,9 @@ import requests
 from dotenv import load_dotenv
 from health_score import compute_health_score
 from context_analysis import analyze_context
+from stress_analyzer import compute_stress_factors
+from care_decision import watering_decision
+
 
 
 load_dotenv()
@@ -55,7 +58,6 @@ def init_db():
                 diagnosis_summary TEXT,
                 risk_prediction TEXT
                  )''')
-    print("Database initialized, tables ensured")
     conn.commit()
     conn.close()
 
@@ -72,6 +74,22 @@ def upload_image():
 
     # 1. Visual confidence (best diagnosis probability)
     visual_confidence = max([d["probability"] for d in result])
+    # Temporary values (until weather + history fully wired)
+    temperature = 30        # assume warm day
+    humidity = 70           # assume moderate humidity
+    days_since_watered = 4  # placeholder
+
+    stress_factors = compute_stress_factors(
+        visual_confidence,
+        temperature,
+        humidity,
+        days_since_watered
+    )
+    care_decision = watering_decision(
+    temperature,
+    humidity,
+    days_since_watered
+    )
 
     # 2. Temporary scores (will improve later)
     watering_score = 0.7
@@ -87,7 +105,9 @@ def upload_image():
     )
     return jsonify({
         'diagnosis': result,
-        'health_score': health_score
+        'health_score': health_score,
+        'stress_factors':stress_factors,
+        'care_decision': care_decision
     })
 
 @app.route('/api/diagnose-text', methods=['POST'])

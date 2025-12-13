@@ -7,6 +7,8 @@ export default function UploadDiagnose() {
   const [healthScore, setHealthScore] = useState(null)
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
+  const [stressFactors, setStressFactors] = useState(null)
+  const [careDecision, setCareDecision] = useState(null)
 
   async function handleUpload(e) {
     e.preventDefault()
@@ -16,6 +18,9 @@ export default function UploadDiagnose() {
       const res = await uploadImage(file)
       setDiagnosis(res.data.diagnosis)
       setHealthScore(res.data.health_score)
+      setStressFactors(res.data.stress_factors)
+      setCareDecision(res.data.care_decision)
+
     } catch (err) {
       alert('Upload failed: ' + err.message)
     } finally { setLoading(false) }
@@ -69,6 +74,23 @@ export default function UploadDiagnose() {
   <div className="health-score-box fade-in">
     <h4>Plant Health Score</h4>
     <div className="health-score-number">{healthScore}/100</div>
+  </div>
+)}
+{stressFactors && (
+  <div className="health-score-box fade-in">
+    <h4>Stress Breakdown</h4>
+    {Object.entries(stressFactors).map(([key, value]) => (
+      <div key={key}>
+        <strong>{key.toUpperCase()} Stress:</strong> {value}
+      </div>
+    ))}
+  </div>
+)}
+{careDecision && (
+  <div className="health-score-box fade-in">
+    <h4>Care Decision</h4>
+    <p><strong>Action:</strong> {careDecision.action}</p>
+    <p><strong>Reason:</strong> {careDecision.reason}</p>
   </div>
 )}
     </div>
