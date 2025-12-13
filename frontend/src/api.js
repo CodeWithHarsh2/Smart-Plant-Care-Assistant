@@ -9,6 +9,5 @@ export const uploadImage = (file) => {
 }
 
 export const diagnoseText = (text) => axios.post(`${API_BASE}/api/diagnose-text`, { text })
-export const getPlants = () => axios.get(`${API_BASE}/api/plants`)
-export const addPlant = (p) => axios.post(`${API_BASE}/api/plants`, p)
+
 export const getWeather = (lat, lon) => axios.get(`${API_BASE}/api/weather?lat=${lat}&lon=${lon}`)

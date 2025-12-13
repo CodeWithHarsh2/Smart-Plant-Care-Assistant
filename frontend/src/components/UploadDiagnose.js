@@ -4,6 +4,7 @@ import { uploadImage, diagnoseText } from '../api'
 export default function UploadDiagnose() {
   const [file, setFile] = useState(null)
   const [diagnosis, setDiagnosis] = useState(null)
+  const [healthScore, setHealthScore] = useState(null)
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -14,6 +15,7 @@ export default function UploadDiagnose() {
     try {
       const res = await uploadImage(file)
       setDiagnosis(res.data.diagnosis)
+      setHealthScore(res.data.health_score)
     } catch (err) {
       alert('Upload failed: ' + err.message)
     } finally { setLoading(false) }
@@ -26,6 +28,7 @@ export default function UploadDiagnose() {
     try {
       const res = await diagnoseText(text)
       setDiagnosis(res.data.diagnosis)
+      setHealthScore(res.data.health_score)
     } catch (err) {
       alert('Failed: ' + err.message)
     } finally { setLoading(false) }
@@ -62,7 +65,12 @@ export default function UploadDiagnose() {
     ))}
   </div>
 )}
-
+{healthScore !== null && (
+  <div className="health-score-box fade-in">
+    <h4>Plant Health Score</h4>
+    <div className="health-score-number">{healthScore}/100</div>
+  </div>
+)}
     </div>
   )
 }

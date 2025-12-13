@@ -8,6 +8,9 @@ import sqlite3
 from datetime import datetime, timedelta
 import requests
 from dotenv import load_dotenv
+from health_score import compute_health_score
+from context_analysis import analyze_context
+
 
 load_dotenv()
 
@@ -44,6 +47,15 @@ def init_db():
                  action TEXT,
                  details TEXT
                  )''')
+    c.execute('''CREATE TABLE IF NOT EXISTS plant_health_log (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                plant_id INTEGER,
+                timestamp TEXT,
+                health_score INTEGER,
+                diagnosis_summary TEXT,
+                risk_prediction TEXT
+                 )''')
+    print("Database initialized, tables ensured")
     conn.commit()
     conn.close()
 
@@ -56,7 +68,27 @@ def upload_image():
         return jsonify({'error': 'no selected file'}), 400
     path = save_image(f)
     result = diagnose_from_image(path)
-    return jsonify({'diagnosis': result, 'path': path})
+        # STEP 4: HEALTH SCORE CALCULATION
+
+    # 1. Visual confidence (best diagnosis probability)
+    visual_confidence = max([d["probability"] for d in result])
+
+    # 2. Temporary scores (will improve later)
+    watering_score = 0.7
+    weather_score = 0.8
+    plant_match_score = 0.75
+
+    # 3. Compute final health score
+    health_score = compute_health_score(
+        visual_confidence,
+        watering_score,
+        weather_score,
+        plant_match_score
+    )
+    return jsonify({
+        'diagnosis': result,
+        'health_score': health_score
+    })
 
 @app.route('/api/diagnose-text', methods=['POST'])
 def diagnose_text():

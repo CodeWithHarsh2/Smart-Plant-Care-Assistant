@@ -257,3 +257,18 @@ input[type="file"] {
     grid-template-columns: 1fr;
   }
 }
+
+.health-score-box {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.9);
+  text-align: center;
+}
+
+.health-score-number {
+  font-size: 44px;
+  font-weight: bold;
+  color: #1f7a4f;
+}
+

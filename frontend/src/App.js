@@ -1,6 +1,5 @@
 import React from 'react'
 import UploadDiagnose from './components/UploadDiagnose'
-import PlantDatabase from './components/PlantDatabase'
 import Dashboard from './components/Dashboard'
 import './styles.css'
 
@@ -14,7 +13,7 @@ export default function App() {
       <main className="main-grid">
         <section className="left">
           <UploadDiagnose />
-          <PlantDatabase />
+          
         </section>
         <aside className="right">
           <Dashboard />
