@@ -1,0 +1,6 @@
+# .gitignore
+backend/venv/
+.env
+node_modules/
+
+
