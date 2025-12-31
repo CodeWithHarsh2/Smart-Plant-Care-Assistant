@@ -63,8 +63,9 @@ It demonstrates
 🧱 Clean and modular backend design  
 🌍 Solving a real world everyday problem  
 
-It fits well for portfolios academic submissions and internship discussions.
+
 
 ## 🌟 Final Thoughts
 
 Smart Plant Care Assistant is a thoughtful and practical project. It shows how technology can feel calm helpful and understandable when built with care. More than features, it reflects intention ❤️
+
