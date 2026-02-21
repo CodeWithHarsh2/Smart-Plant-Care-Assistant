@@ -1,6 +1,3 @@
-/* ===============================
-   GLOBAL RESET & VARIABLES
-================================ */
 
 :root {
   --primary: #1f7a4f;
@@ -24,9 +21,7 @@ html, body, #root {
   color: #102820;
 }
 
-/* ===============================
-   APP LAYOUT
-================================ */
+
 
 .app-root {
   min-height: 100vh;
@@ -35,9 +30,7 @@ html, body, #root {
   flex-direction: column;
 }
 
-/* ===============================
-   HEADER
-================================ */
+
 
 .app-header {
   background: linear-gradient(120deg, #1f7a4f, #2fa36b);
@@ -75,9 +68,6 @@ html, body, #root {
   opacity: 0.9;
 }
 
-/* ===============================
-   MAIN GRID
-================================ */
 
 .main-grid {
   flex: 1;
@@ -86,9 +76,7 @@ html, body, #root {
   gap: 24px;
 }
 
-/* ===============================
-   GLASS CARDS
-================================ */
+
 
 .card {
   background: var(--glass);
@@ -111,9 +99,6 @@ html, body, #root {
   color: #ffffff;
 }
 
-/* ===============================
-   LEFT & RIGHT PANELS
-================================ */
 
 .left {
   display: flex;
@@ -127,9 +112,7 @@ html, body, #root {
   gap: 24px;
 }
 
-/* ===============================
-   FORMS
-================================ */
+
 
 form {
   display: flex;
@@ -150,14 +133,10 @@ form {
   outline: 2px solid var(--accent);
 }
 
-/* File input */
 input[type="file"] {
   color: white;
 }
 
-/* ===============================
-   BUTTONS
-================================ */
 
 .button {
   background: linear-gradient(135deg, #c9a227, #f0d35c);
@@ -180,9 +159,6 @@ input[type="file"] {
   cursor: not-allowed;
 }
 
-/* ===============================
-   DIAGNOSIS RESULT
-================================ */
 
 .result-box {
   background: rgba(255,255,255,0.85);
@@ -195,9 +171,7 @@ input[type="file"] {
   color: #145a3a;
 }
 
-/* ===============================
-   PLANT LIST
-================================ */
+
 
 .plant-item {
   background: rgba(255,255,255,0.75);
@@ -206,9 +180,7 @@ input[type="file"] {
   margin-bottom: 10px;
 }
 
-/* ===============================
-   DASHBOARD
-================================ */
+
 
 .dashboard-stat {
   background: linear-gradient(135deg, #1f7a4f, #2fa36b);
@@ -219,9 +191,7 @@ input[type="file"] {
   text-align: center;
 }
 
-/* ===============================
-   FOOTER
-================================ */
+
 
 .app-footer {
   text-align: center;
@@ -229,9 +199,7 @@ input[type="file"] {
   color: rgba(255,255,255,0.7);
 }
 
-/* ===============================
-   ANIMATIONS
-================================ */
+
 
 .fade-in {
   animation: fadeInUp 0.8s ease both;
@@ -248,9 +216,7 @@ input[type="file"] {
   }
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+
 
 @media (max-width: 1000px) {
   .main-grid {
