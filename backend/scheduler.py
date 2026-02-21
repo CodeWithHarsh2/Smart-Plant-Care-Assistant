@@ -3,14 +3,12 @@ from datetime import datetime
 
 scheduler = BackgroundScheduler()
 
-# Example job storage
 WATERING_JOBS = {}
 
 def start_scheduler(app):
     scheduler.start()
 
 def schedule_watering(plant_id, next_run, callback, *args, **kwargs):
-    # next_run is a datetime
     job = scheduler.add_job(callback, 'date', run_date=next_run, args=args, kwargs=kwargs)
     WATERING_JOBS[plant_id] = job
     return job
