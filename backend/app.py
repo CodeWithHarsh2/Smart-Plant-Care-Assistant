@@ -28,8 +28,6 @@ CORS(app)
 
 BASE_DIR = os.path.dirname(__file__)
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
-
-# simple sqlite helper
 DB_PATH = os.path.join(BASE_DIR, 'database.db')
 
 def init_db():
@@ -70,11 +68,8 @@ def upload_image():
         return jsonify({'error': 'no selected file'}), 400
     path = save_image(f)
     result = diagnose_from_image(path)
-        # STEP 4: HEALTH SCORE CALCULATION
 
-    # 1. Visual confidence (best diagnosis probability)
     visual_confidence = max([d["probability"] for d in result])
-    # Temporary values (until weather + history fully wired)
     temperature = 30        # assume warm day
     humidity = 70           # assume moderate humidity
     days_since_watered = 4  # placeholder
@@ -91,12 +86,10 @@ def upload_image():
     days_since_watered
     )
 
-    # 2. Temporary scores (will improve later)
     watering_score = 0.7
     weather_score = 0.8
     plant_match_score = 0.75
 
-    # 3. Compute final health score
     health_score = compute_health_score(
         visual_confidence,
         watering_score,
